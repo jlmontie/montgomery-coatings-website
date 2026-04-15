@@ -1,0 +1,15 @@
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate.*.backup
+terraform/override.tf
+terraform/override.tf.json
+
+# Secrets
+*-key.json
+*-credentials.json
+
+# OS
+.DS_Store

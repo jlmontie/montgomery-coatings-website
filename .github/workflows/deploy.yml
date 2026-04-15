@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Sync to GCS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/895349511604/locations/global/workloadIdentityPools/montgomery-coatings-pool/providers/github-provider
+          service_account: github-actions-deploy@montgomery-coatings.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Sync files to GCS
+        run: |
+          gsutil -m rsync -r -d \
+            -x "^(\.git|\.github|terraform|product-offering-description\.txt|\.gitignore|README)" \
+            . gs://${{ secrets.GCS_BUCKET_NAME }}
+
+      - name: Set no-cache on index.html
+        run: |
+          gsutil setmeta \
+            -h "Cache-Control:no-cache, max-age=0" \
+            gs://${{ secrets.GCS_BUCKET_NAME }}/index.html
+
+      - name: Invalidate CDN cache
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache montgomery-coatings-urlmap \
+            --path "/*" \
+            --project montgomery-coatings \
+            --global \
+            --async \
+            --quiet

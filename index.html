@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montgomery Coatings — Concrete, Upgraded.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0f0d0b;
+      --ink-90:     #1c1916;
+      --ink-80:     #2a2620;
+      --ink-70:     #3c3730;
+      --ink-50:     #635c52;
+      --ink-30:     #96908a;
+      --ink-10:     #c8c3bc;
+      --stone:      #e0d9d0;
+      --parchment:  #f0ebe3;
+      --cream:      #faf8f5;
+
+      --clay:       #c4622d;
+      --clay-dim:   #9e4e23;
+      --clay-pale:  #f0c4a8;
+
+      --sand:       #b8956a;
+      --sand-light: #d4b896;
+
+      --serif: 'Fraunces', Georgia, serif;
+      --sans:  'Barlow', sans-serif;
+      --cond:  'Barlow Condensed', sans-serif;
+
+      --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250, 248, 245, 0.94);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(60,55,48,0.1);
+    }
+    .nav-logo {
+      font-family: var(--cond);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--clay); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--cond);
+      font-weight: 400;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--clay); }
+    .nav-cta {
+      font-family: var(--cond);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--clay);
+      border: none;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--clay-dim); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 2.5rem 5rem;
+      background-color: var(--parchment);
+      background-image:
+        var(--noise),
+        radial-gradient(ellipse 70% 55% at 65% 25%, rgba(196,98,45,0.07) 0%, transparent 65%);
+      overflow: hidden;
+    }
+    /* Two-tone panel: right side in stone */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 36%;
+      background-color: var(--stone);
+      background-image: var(--noise);
+      pointer-events: none;
+    }
+    /* Decorative joint lines on the panel */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 38%;
+      right: 0;
+      width: 36%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(196,98,45,0.25), rgba(196,98,45,0.08));
+      pointer-events: none;
+    }
+    /* Bottom rule */
+    .hero-rule {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,98,45,0.3) 30%, transparent);
+    }
+    .hero-eyebrow {
+      font-family: var(--cond);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: clamp(4.5rem, 11vw, 10rem);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.15em;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.35s ease forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 200;
+      color: var(--clay);
+    }
+    .hero-title-sub {
+      font-family: var(--cond);
+      font-size: clamp(1.1rem, 3vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ink-30);
+      margin-bottom: 2.5rem;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s ease forwards;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      gap: 3rem;
+      flex-wrap: wrap;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.65s ease forwards;
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink-50);
+      max-width: 380px;
+      line-height: 1.4;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--cond);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--clay);
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--clay-dim);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      display: inline-block;
+      font-family: var(--cond);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-10);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover {
+      color: var(--clay);
+      border-color: var(--clay-pale);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s ease forwards;
+    }
+    .hero-scroll span {
+      font-family: var(--cond);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(99,92,82,0.4);
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(196,98,45,0.5), transparent);
+      animation: scrollLine 2s 1.5s ease-in-out infinite;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { position: relative; }
+
+    .section-label {
+      font-family: var(--cond);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      padding: 7rem 2.5rem;
+      background: var(--stone);
+      background-image: var(--noise);
+    }
+    .services-header {
+      max-width: 640px;
+      margin-bottom: 4rem;
+    }
+    .services-header .section-heading {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+    .services-header p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      line-height: 1.7;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 2.8rem 2.5rem;
+      background: var(--parchment);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--ink-10);
+      transition: background 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card.featured::before { background: var(--clay); }
+    .service-card.premium::before {
+      background: linear-gradient(90deg, var(--clay), var(--sand));
+    }
+
+    .service-tier {
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-30);
+      margin-bottom: 1.2rem;
+    }
+    .service-card.featured .service-tier { color: var(--clay); }
+    .service-card.premium .service-tier { color: var(--sand); }
+
+    .service-name {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+    .service-position {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--ink-50);
+      margin-bottom: 1.8rem;
+      line-height: 1.5;
+    }
+    .service-includes {
+      list-style: none;
+      margin-bottom: 2.2rem;
+    }
+    .service-includes li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(60,55,48,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .service-includes li::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--ink-10);
+      flex-shrink: 0;
+    }
+    .service-card.featured .service-includes li::before { background: var(--clay); }
+    .service-card.premium .service-includes li::before { background: var(--sand); }
+
+    .service-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 1.6rem;
+    }
+    .price-amount {
+      font-family: var(--cond);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .service-card.featured .price-amount { color: var(--clay-dim); }
+    .service-card.premium .price-amount { color: var(--sand); }
+    .price-unit {
+      font-family: var(--cond);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--ink-30);
+      letter-spacing: 0.08em;
+    }
+    .service-cta {
+      display: inline-block;
+      font-family: var(--cond);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-10);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .service-card.featured .service-cta {
+      color: var(--clay);
+      border-color: var(--clay-pale);
+    }
+    .service-card.premium .service-cta {
+      color: var(--sand);
+      border-color: var(--sand-light);
+    }
+    .service-cta:hover { opacity: 0.7; }
+
+    .services-funnel {
+      margin-top: 3.5rem;
+      padding: 2rem 2.5rem;
+      background: var(--ink-90);
+      background-image: var(--noise);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .funnel-icon {
+      font-family: var(--cond);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--clay);
+    }
+    .funnel-text {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--stone);
+      max-width: 500px;
+      line-height: 1.5;
+    }
+    .funnel-text strong {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--clay-pale);
+    }
+
+    /* ─── PROCESS ─── */
+    #process {
+      padding: 7rem 2.5rem;
+      background: var(--parchment);
+      background-image: var(--noise);
+    }
+    .process-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .process-inner .section-heading {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--ink);
+      margin-bottom: 3.5rem;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0;
+    }
+    .process-step {
+      position: relative;
+      padding: 2rem 2rem 2rem 0;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 2.85rem;
+      right: 0;
+      width: 1px;
+      height: 2rem;
+      background: rgba(196,98,45,0.25);
+    }
+    .step-num {
+      font-family: var(--cond);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(196,98,45,0.18);
+      margin-bottom: 1rem;
+    }
+    .step-title {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .step-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      line-height: 1.65;
+    }
+
+    /* ─── WHY US ─── */
+    #why {
+      padding: 7rem 2.5rem;
+      background: var(--stone);
+      background-image: var(--noise);
+    }
+    .why-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .why-left .section-heading {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .why-left p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .why-left .specialist-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.9rem 1.4rem;
+      background: var(--ink-90);
+      background-image: var(--noise);
+    }
+    .badge-line {
+      width: 3px;
+      height: 32px;
+      background: var(--clay);
+    }
+    .badge-text {
+      font-family: var(--cond);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      line-height: 1.4;
+    }
+    .why-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+    }
+    .why-card {
+      background: var(--cream);
+      padding: 1.8rem;
+    }
+    .why-card-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .why-card-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--clay);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .why-card h4 {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .why-card p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      line-height: 1.6;
+    }
+
+    /* ─── QUOTE STRIP ─── */
+    #quote-strip {
+      padding: 4rem 2.5rem;
+      background: var(--clay);
+      background-image: var(--noise);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .strip-text {
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.3;
+      max-width: 500px;
+    }
+    .strip-text em { font-style: italic; }
+    .btn-light {
+      display: inline-block;
+      font-family: var(--cond);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay-dim);
+      background: var(--cream);
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-light:hover {
+      background: var(--parchment);
+      transform: translateY(-1px);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 7rem 2.5rem;
+      background: var(--parchment);
+      background-image: var(--noise);
+    }
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-left .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .contact-left p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--ink-50);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .contact-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .contact-detail-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--clay);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .contact-detail-item span {
+      font-family: var(--cond);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-50);
+    }
+
+    form {
+      display: grid;
+      gap: 1.2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    label {
+      font-family: var(--cond);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+    }
+    input, select, textarea {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--cream);
+      border: 1px solid rgba(60,55,48,0.18);
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396908a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+      background-color: var(--cream);
+    }
+    select option { background: var(--cream); color: var(--ink); }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(196,98,45,0.5);
+      background: #fff;
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(150,144,138,0.6);
+    }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 0.4rem;
+    }
+    .form-submit .btn-primary {
+      border: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      padding: 1.1rem 2rem;
+    }
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--ink-30);
+      line-height: 1.5;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink-90);
+      background-image: var(--noise);
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-logo {
+      font-family: var(--cond);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-30);
+    }
+    .footer-logo span { color: var(--clay); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--ink-50);
+      font-weight: 300;
+    }
+    .footer-area {
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50%       { transform: scaleY(0.4); opacity: 0.4; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      #hero { padding: 0 1.25rem 4rem; }
+      #hero::before, #hero::after { display: none; }
+      #services, #process, #why, #contact { padding: 5rem 1.25rem; }
+      .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      #quote-strip { padding: 3rem 1.25rem; }
+      .process-step:not(:last-child)::after { display: none; }
+      footer { padding: 1.75rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">Montgomery<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#why">Why Us</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Free Estimate</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-rule"></div>
+    <div class="hero-eyebrow">Concrete Coatings Specialist &nbsp;·&nbsp; Wasatch Front, Utah</div>
+    <h1 class="hero-title">Mont<em>gomery</em></h1>
+    <div class="hero-title-sub">Coatings</div>
+    <div class="hero-bottom">
+      <p class="hero-tagline">Concrete, upgraded.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Get a Free Quote</a>
+        <a class="btn-ghost" href="#services">View Services</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading">Three ways we<br>upgrade your concrete.</h2>
+      <p>We restore and upgrade concrete surfaces. Most people want a clean, modern refresh or a more durable coated finish. A select few want something truly custom.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-tier">Service 01 &nbsp;·&nbsp; Entry Level</div>
+        <h3 class="service-name">Concrete<br>Refresh</h3>
+        <p class="service-position">"Restore your concrete without replacing it"</p>
+        <ul class="service-includes">
+          <li>Pressure wash &amp; clean</li>
+          <li>Minor crack repair</li>
+          <li>Concrete stain or solid-color sealer</li>
+          <li>Matte protective topcoat</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-amount">$3–6</span>
+          <span class="price-unit">/ sq ft</span>
+        </div>
+        <a class="service-cta" href="#contact">Get an estimate &rarr;</a>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card featured reveal reveal-delay-2">
+        <div class="service-tier">Service 02 &nbsp;·&nbsp; Most Popular</div>
+        <h3 class="service-name">Decorative<br>Concrete Coating</h3>
+        <p class="service-position">"A durable, modern finish designed for outdoor living"</p>
+        <ul class="service-includes">
+          <li>Mechanical prep (grind)</li>
+          <li>Pigmented coating system</li>
+          <li>Optional light texture</li>
+          <li>Polyaspartic topcoat — UV-stable</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-amount">$6–10</span>
+          <span class="price-unit">/ sq ft</span>
+        </div>
+        <a class="service-cta" href="#contact">Get an estimate &rarr;</a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card premium reveal reveal-delay-3">
+        <div class="service-tier">Service 03 &nbsp;·&nbsp; Premium</div>
+        <h3 class="service-name">Custom Designed<br>Concrete</h3>
+        <p class="service-position">"Custom-designed concrete that looks like stone or tile"</p>
+        <ul class="service-includes">
+          <li>Everything in Service 02</li>
+          <li>Stencil layer (vinyl or reusable)</li>
+          <li>Multi-tone design work</li>
+          <li>Premium topcoat system</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-amount">$10–18</span>
+          <span class="price-unit">/ sq ft</span>
+        </div>
+        <a class="service-cta" href="#contact">Get an estimate &rarr;</a>
+      </div>
+    </div>
+
+    <div class="services-funnel reveal">
+      <div class="funnel-icon">&#8595;</div>
+      <p class="funnel-text">Most clients start with a <strong>Concrete Refresh</strong> and upgrade from there — we'll help you find the right fit for your space and budget.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="process-inner">
+      <div class="section-label reveal">How It Works</div>
+      <h2 class="section-heading reveal">Simple process.<br>Lasting results.</h2>
+      <div class="process-steps">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Free Estimate</h3>
+          <p class="step-desc">We assess your space and give you a clear, honest quote — no pressure, no jargon.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Surface Prep</h3>
+          <p class="step-desc">Pressure washing, crack repair, and mechanical grinding for proper adhesion and a lasting bond.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Coating Applied</h3>
+          <p class="step-desc">Professional-grade polyaspartic coating systems applied with precision. Fast cure — back in use in hours.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Walk-Through</h3>
+          <p class="step-desc">We walk the finished work with you before we leave. Your satisfaction is the standard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="why-inner">
+      <div class="why-left">
+        <div class="section-label reveal">Why Montgomery Coatings</div>
+        <h2 class="section-heading reveal">Built on real<br>trade experience.</h2>
+        <p class="reveal">Two decades of professional surface work means we know what makes coatings fail before we ever start a job. We prep right, use the right systems, and finish what we start.</p>
+        <div class="specialist-badge reveal">
+          <div class="badge-line"></div>
+          <div class="badge-text">Concrete Coatings<br>Specialist</div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Licensed &amp; Insured</h4>
+          <p>Work done right, and you're protected if something unexpected happens.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h4>Fast Turnaround</h4>
+          <p>Polyaspartic systems cure in hours, not days — most jobs done in 1–2 days.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Polyaspartic Systems</h4>
+          <p>UV-stable, flexible, and far more durable than standard epoxy for outdoor use.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-4">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Wasatch Front</h4>
+          <p>Serving the greater Salt Lake area. Local, responsive, and accountable.</p>
+        </div>
+        <div class="why-card reveal" style="grid-column: span 2;">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Free Estimates, Always</h4>
+          <p>We'll assess your space, explain what we'd recommend and why, and leave you with a clear quote — no obligation, no surprise charges later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE STRIP -->
+  <div id="quote-strip">
+    <p class="strip-text"><em>"Restore your concrete<br>without replacing it."</em></p>
+    <a class="btn-light" href="#contact">Schedule a Free Estimate</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="section-label reveal">Get in Touch</div>
+        <h2 class="section-heading reveal">Ready to upgrade<br>your concrete?</h2>
+        <p class="reveal">Tell us about your space. We'll get back to you within 24 hours to schedule a free on-site estimate.</p>
+        <div class="contact-detail reveal">
+          <div class="contact-detail-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>We'll call you to schedule</span>
+          </div>
+          <div class="contact-detail-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Wasatch Front, Utah</span>
+          </div>
+          <div class="contact-detail-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span>Response within 24 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="quote-form" class="reveal" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(801) 555-0100" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input type="text" id="address" name="address" placeholder="123 Main St, Salt Lake City, UT" />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Interest</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="refresh">Concrete Refresh ($3–6/sq ft)</option>
+            <option value="coating">Decorative Concrete Coating ($6–10/sq ft)</option>
+            <option value="custom">Custom Designed Concrete ($10–18/sq ft)</option>
+            <option value="unsure">Not sure — I'd like a recommendation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your project</label>
+          <textarea id="message" name="message" placeholder="Patio, driveway, garage floor? Approximate square footage? Any existing damage?"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Request Free Estimate</button>
+        </div>
+        <p class="form-note">No obligation. We'll reach out within 24 hours to discuss your project.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Montgomery<span>.</span> Coatings</div>
+    <div class="footer-copy">&copy; 2026 Montgomery Coatings. All rights reserved.</div>
+    <div class="footer-area">Wasatch Front, Utah</div>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Form handler (wire up to backend/Formspree/etc.)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Request Sent ✓';
+        btn.style.background = '#4a7c59';
+        e.target.reset();
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
