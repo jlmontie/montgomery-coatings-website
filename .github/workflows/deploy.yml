@@ -28,13 +28,13 @@ jobs:
         run: |
           gsutil -m rsync -r -d \
             -x "^(\.git|\.github|terraform|product-offering-description\.txt|\.gitignore|README)" \
-            . gs://${{ secrets.GCS_BUCKET_NAME }}
+            . gs://montgomerycoatings-com
 
       - name: Set no-cache on index.html
         run: |
           gsutil setmeta \
             -h "Cache-Control:no-cache, max-age=0" \
-            gs://${{ secrets.GCS_BUCKET_NAME }}/index.html
+            gs://montgomerycoatings-com/index.html
 
       - name: Invalidate CDN cache
         run: |
