@@ -24,6 +24,11 @@ resource "google_project_service" "compute" {
   disable_on_destroy = false
 }
 
+resource "google_project_service" "iam_credentials" {
+  service            = "iamcredentials.googleapis.com"
+  disable_on_destroy = false
+}
+
 # ── Storage bucket (static hosting) ───────────────────────────────────────────
 
 resource "google_storage_bucket" "website" {
